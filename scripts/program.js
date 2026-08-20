@@ -269,7 +269,7 @@ class ProgramController {
             <div>
               <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
                 <span class="event-category-tag special">SPECIAL EVENT</span>
-                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffbd2e;">Day 1 &amp; Day 2</span>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffbd2e;">Day 3</span>
               </div>
               <h3 style="font-size: 1.75rem; color: #ffffff; margin-bottom: 0.5rem; font-family: var(--font-display);">${ev.title}</h3>
               <p style="font-family: var(--font-mono); font-size: 0.85rem; color: #ffbd2e; margin-bottom: 1rem;">// ${ev.tagline}</p>
