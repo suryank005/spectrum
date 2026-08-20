@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program &amp; Events Directory | IONITIX 2026 — CSE-IOT Fest</title>
+  <meta name="description" content="Explore Technical and Non-Technical events at IONITIX 2026. Register for IoT hackathons, robotics challenges, code sprints, esports championships, and campus quests.">
+  <meta name="theme-color" content="#060810">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/animations.css?v=3">
+  <style>
+    .blink-warning {
+      animation: warning-blink 1s steps(1) infinite !important;
+    }
+    @keyframes warning-blink {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 95, 86, 0.6);
+      }
+      50% {
+        opacity: 0.15;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tech Background Overlays -->
+  <canvas id="iot-mesh-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+  <div class="cyber-vignette"></div>
+  <div class="scanline-effect"></div>
+
+  <!-- Page Wrapper -->
+  <div class="app-wrapper">
+
+    <!-- ==========================================
+         Cyber Navigation Bar
+         ========================================== -->
+    <nav class="cyber-nav">
+      <div class="container nav-container">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="nav-brand">
+          <div class="brand-logo-icon has-img">
+            <img src="logo.png" alt="IONITIX Logo">
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">IONITIX<span>.26</span></div>
+            <div class="brand-subtitle">DEPT OF CSE-IOT</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="program.html" class="nav-link active">Program &amp; Events</a></li>
+          <li><a href="index.html#highlights" class="nav-link">Hackathon</a></li>
+          <li><a href="index.html#about" class="nav-link">About Dept</a></li>
+        </ul>
+
+        <!-- Action Items -->
+        <div class="nav-actions">
+          <!-- Audio Synthesizer Toggle -->
+          <button class="audio-btn" id="nav-audio-btn" aria-label="Toggle Audio Sound FX" title="Cyber Audio SFX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+
+          <!-- Back to Home -->
+          <a href="index.html" class="btn btn-cyber-outline btn-sm nav-action-btn-desktop">
+            <svg style="transform: rotate(180deg);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <span>Back to Home</span>
+          </a>
+
+          <!-- Mobile Toggle Button -->
+          <button class="mobile-toggle" aria-label="Open Mobile Navigation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer-backdrop"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-text">
+          <div class="brand-title">IONITIX<span>.26</span></div>
+          <div class="brand-subtitle">CSE-IOT NATIONAL FEST</div>
+        </div>
+        <button class="mobile-close-btn" aria-label="Close Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span>01 // HOME</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="program.html" class="mobile-nav-link active">
+            <span>02 // PROGRAM &amp; EVENTS</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="index.html#highlights" class="mobile-nav-link">
+            <span>03 // HACKATHON</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="index.html#about" class="mobile-nav-link">
+            <span>04 // ABOUT CSE-IOT</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ==========================================
+         Main Content: Program & Events Catalog
+         ========================================== -->
+    <main class="main-content">
+      <div class="container" style="padding-top: 2.5rem; padding-bottom: 6rem;">
+        
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="section-tag reveal-fade-up">
+            <span>EVENT MATRIX &amp; REGISTRATION</span>
+          </div>
+          <div class="reveal-fade-up" style="margin-top: 0.6rem; margin-bottom: 1.25rem;">
+            <span class="blink-warning" style="display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #ff5f56; background: rgba(255, 95, 86, 0.12); border: 1px solid rgba(255, 95, 86, 0.4); padding: 0.35rem 0.9rem; border-radius: 999px;">
+              <svg style="width: 14px; height: 14px; color: #ff5f56;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <span>ONLY FOR COLLEGE STUDENTS</span>
+            </span>
+          </div>
+          <h1 class="section-title reveal-fade-up">PROGRAM DIRECTORY</h1>
+          <p class="section-subtitle reveal-fade-up">
+            Toggle between Technical and Non-Technical domains. Choose your battleground, view comprehensive guidelines, and lock in your registration. Valid college ID card is mandatory.
+          </p>
+        </div>
+
+        <!-- Controls: Category Tabs & Search/Filter -->
+        <div class="program-controls">
+          
+          <!-- Category Switcher Tabs -->
+          <div class="program-tabs-container reveal-fade-up">
+            <div class="cyber-tabs">
+              <button class="cyber-tab-btn active" id="tab-tech">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line></svg>
+                <span>Technical Events (3)</span>
+              </button>
+              <button class="cyber-tab-btn" id="tab-non-tech">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="2"></rect></svg>
+                <span>Non-Technical &amp; Gaming (6)</span>
+              </button>
+              <button class="cyber-tab-btn" id="tab-special">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Special Event (1)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Filter Row -->
+          <div class="filter-search-bar reveal-fade-up">
+            <div class="search-input-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="event-search" class="search-input" placeholder="Search events by title, keyword, or domain...">
+            </div>
+
+            <div class="filter-pills" id="filter-pills-container">
+              <!-- Rendered dynamically by program.js based on selected category -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Dynamic Event Cards Grid -->
+        <div class="events-grid" id="events-grid">
+          <!-- Populated dynamically via program.js from events-data.js -->
+        </div>
+
+        <!-- SPECIAL EVENT SHOWCASE (BELOW BOTH TECHNICAL & NON-TECHNICAL) -->
+        <div id="special-event-showcase" style="margin-top: 4.5rem;" class="reveal-fade-up">
+          <div class="section-header" style="margin-bottom: 2rem; text-align: left;">
+            <div class="section-tag" style="background: rgba(255, 189, 46, 0.12); border-color: rgba(255, 189, 46, 0.45); color: #ffbd2e;">
+              <span>SPECIAL EVENT // OPEN TO ALL</span>
+            </div>
+            <h2 style="font-size: 1.85rem; color: #fff; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <span>SPECIAL EVENT</span>
+              <span style="color: #ffbd2e; font-size: 1.4rem;">★ REEL MAKING</span>
+            </h2>
+          </div>
+
+          <div class="cyber-box special-event-card">
+            <div style="position: relative; width: 100%; height: 240px; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255, 189, 46, 0.4); background: #000;">
+              <div style="position: absolute; inset: 0; background-image: url('events/reel1.jpg'); background-size: cover; background-position: center; filter: blur(16px) brightness(0.45); opacity: 0.85; transform: scale(1.15);"></div>
+              <img src="events/reel1.jpg" alt="REEL MAKING" style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain; display: block; margin: 0 auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));">
+            </div>
+            
+            <div class="special-event-grid">
+              
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                  <span class="event-category-tag special">SPECIAL EVENT</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffbd2e;">Day 1 &amp; Day 2</span>
+                </div>
+                <h3 style="font-size: 1.75rem; color: #ffffff; margin-bottom: 0.5rem; font-family: var(--font-display);">REEL MAKING</h3>
+                <p style="font-family: var(--font-mono); font-size: 0.85rem; color: #ffbd2e; margin-bottom: 1rem;">// Fest Moments, Visual Editing &amp; Creative Cinematics Clash</p>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                  Shoot, edit, and publish high-energy creative vertical reels capturing the vibrant energy, cyber tech moments, and competitive spirit of IONITIX 2026. Open to all registered participants across technical and non-technical branches!
+                </p>
+                
+                <!-- Coordinator info -->
+                <div class="special-coord-box">
+                  <div><span style="color: #ffbd2e;">Faculty Coordinator:</span> <strong style="color: #fff;">Prof. Allwin Jacob</strong></div>
+                  <div><span style="color: #ffbd2e;">Student Coordinator:</span> <strong style="color: #fff;">Adnan Ashraf</strong></div>
+                  <div><span style="color: #ffbd2e;">Student Sub-coordinators:</span> <span style="color: var(--text-secondary);">Muhammed Razi, Razik</span></div>
+                </div>
+              </div>
+
+              <div class="special-event-side">
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Team Size</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.95rem; color: #fff;">Individual / Duo</span>
+                </div>
+
+                <button class="btn btn-cyber-primary open-details-btn" data-event-id="reel-making" style="background: linear-gradient(135deg, #ffbd2e, #f59e0b); color: #000; border-color: #ffbd2e; font-weight: 700; width: 100%; justify-content: center;">
+                  <span>View Details &amp; Register</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </main>
+
+    <!-- ==========================================
+         Interactive Event Details & Registration Modal
+         ========================================== -->
+    <div class="cyber-modal-backdrop" id="event-modal-backdrop">
+      <div class="cyber-modal">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <div class="modal-header-info">
+            <div id="modal-category-badge" class="section-tag">TECH // HACKATHON</div>
+            <h2 id="modal-title" style="font-size: 1.6rem; color: #fff;">EVENT TITLE</h2>
+            <p id="modal-tagline" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">// Tagline here</p>
+          </div>
+          <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Dialog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          
+          <!-- Event Modal Details Banner Image (2nd Image) -->
+          <div id="modal-image-container" style="display: none; width: 100%; height: 220px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-cyan); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+            <img id="modal-banner-img" src="" alt="Event Details Visual" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          
+          <!-- Event Brief -->
+          <div>
+            <h4 class="modal-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>MISSION BRIEFING</span>
+            </h4>
+            <p id="modal-desc" style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">Full event description.</p>
+          </div>
+
+          <!-- Metadata Quick Bar -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: rgba(6, 10, 22, 0.8); border: 1px solid var(--border-cyan); border-radius: var(--radius-sm); padding: 1.25rem;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">VENUE</div>
+              <div id="modal-venue" style="font-weight: 600; color: #fff; font-size: 0.9rem;">Lab 304</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">SCHEDULE</div>
+              <div id="modal-timing" style="font-weight: 600; color: #fff; font-size: 0.9rem;">Day 1, 10:00 AM</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">TEAM SIZE</div>
+              <div id="modal-team" style="font-weight: 600; color: #fff; font-size: 0.9rem;">2-4 Members</div>
+            </div>
+          </div>
+
+          <!-- Rules Section -->
+          <div>
+            <h4 class="modal-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span>RULES &amp; PROTOCOLS</span>
+            </h4>
+            <ul class="rules-list" id="modal-rules-list">
+              <!-- Rules injected here -->
+            </ul>
+          </div>
+
+          <!-- Coordinators -->
+          <div>
+            <h4 class="modal-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              <span>EVENT COORDINATORS</span>
+            </h4>
+            <div id="modal-coordinators">
+              <!-- Coordinators injected here -->
+            </div>
+          </div>
+
+          <!-- Registration Action Button View -->
+          <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.25rem;">
+            <a href="https://spectrum24h-hackathon.fillout.com/registration" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary" id="modal-register-btn" style="width: 100%; text-align: center; justify-content: center; font-size: 1.05rem; padding: 1.1rem 1.75rem; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+              <span>REGISTER FOR EVENT</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Technocore Footer
+         ========================================== -->
+    <footer class="cyber-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-brand">
+            <div class="nav-brand" style="margin-bottom: 1rem;">
+              <div class="brand-logo-icon has-img">
+                <img src="logo.png" alt="IONITIX Logo">
+              </div>
+              <div class="brand-text">
+                <div class="brand-title">IONITIX<span>.26</span></div>
+                <div class="brand-subtitle">DEPT OF CSE-IOT</div>
+              </div>
+            </div>
+            <p>
+              The premier national-level technical symposium of the Department of Computer Science &amp; Engineering (IoT). Powering hyper-connected innovations.
+            </p>
+            <div style="margin-top: 1.25rem;">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon-only" title="Instagram (@ionitix.iot)" aria-label="Instagram">
+                <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">NAVIGATION</h4>
+            <ul class="footer-links">
+              <li><a href="index.html" class="footer-link">Home Portal</a></li>
+              <li><a href="program.html" class="footer-link">All Events (10)</a></li>
+              <li><a href="program.html?tab=tech" class="footer-link">Technical Track (3)</a></li>
+              <li><a href="program.html?tab=non-tech" class="footer-link">Non-Technical &amp; Gaming (6)</a></li>
+              <li><a href="program.html?tab=special" class="footer-link">Special Event (Reel Making)</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">CHANNELS</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-link">
+                  <svg style="width: 16px; height: 16px; color: #e1306c;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                  <span>Instagram (@ionitix.iot)</span>
+                </a>
+              </li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn Symposium</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">CAMPUS VENUE</h4>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>CSE-IOT Block, Main Engineering Campus, Tech City</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>ionitix.fest@cseiothub.edu</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210 / +91 98765 43211</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 IONITIX — Department of CSE (IoT). All Systems Nominal.</div>
+          <div class="footer-coords">LAT 12.9716° N // LON 77.5946° E [GRID MESH V4.2]</div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/audio.js"></script>
+  <script src="scripts/canvas-mesh.js?v=18"></script>
+  <script src="scripts/events-data.js?v=18"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/program.js?v=18"></script>
+  <script src="scripts/app.js?v=18"></script>
+</body>
+</html>

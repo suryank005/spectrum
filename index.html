@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IONITIX 2026 | Flagship Tech Fest — CSE (Internet of Things)</title>
+  <meta name="description" content="IONITIX 2026 - The premier national-level technical symposium and college fest organized by the Department of Computer Science & Engineering (IoT). Explore 12+ high-octane events, IoT hackathons, robotics, and cyber clashes.">
+  <meta name="keywords" content="IONITIX, CSE-IOT, College Fest, IoT Hackathon, Robotics, Cyber Arena, Tech Symposium, Computer Science">
+  <meta name="theme-color" content="#060810">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=2">
+  <link rel="stylesheet" href="styles/components.css?v=2">
+  <link rel="stylesheet" href="styles/animations.css?v=4">
+  <style>
+    .blink-warning {
+      animation: warning-blink 1s steps(1) infinite !important;
+    }
+    @keyframes warning-blink {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 95, 86, 0.6);
+      }
+      50% {
+        opacity: 0.15;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tech Background Overlays -->
+  <canvas id="iot-mesh-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+  <div class="cyber-vignette"></div>
+  <div class="scanline-effect"></div>
+
+  <!-- Page Wrapper -->
+  <div class="app-wrapper">
+
+    <!-- ==========================================
+         Cyber Navigation Bar
+         ========================================== -->
+    <nav class="cyber-nav">
+      <div class="container nav-container">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="nav-brand">
+          <div class="brand-logo-icon has-img">
+            <img src="logo.png" alt="IONITIX Logo">
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">IONITIX<span>.26</span></div>
+            <div class="brand-subtitle">DEPT OF CSE-IOT</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="program.html" class="nav-link">Program &amp; Events</a></li>
+          <li><a href="#highlights" class="nav-link">Hackathon</a></li>
+          <li><a href="#about" class="nav-link">About Dept</a></li>
+        </ul>
+
+        <!-- Action Items -->
+        <div class="nav-actions">
+          <!-- Audio Synthesizer Toggle -->
+          <button class="audio-btn" id="nav-audio-btn" aria-label="Toggle Audio Sound FX" title="Cyber Audio SFX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+
+          <!-- Direct Program Action -->
+          <a href="program.html" class="btn btn-cyber-primary btn-sm nav-action-btn-desktop">
+            <span>Explore Events</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+
+          <!-- Mobile Toggle Button -->
+          <button class="mobile-toggle" aria-label="Open Mobile Navigation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer-backdrop"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-text">
+          <div class="brand-title">IONITIX<span>.26</span></div>
+          <div class="brand-subtitle">CSE-IOT NATIONAL FEST</div>
+        </div>
+        <button class="mobile-close-btn" aria-label="Close Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="index.html" class="mobile-nav-link active">
+            <span>01 // HOME</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="program.html" class="mobile-nav-link">
+            <span>02 // PROGRAM & EVENTS</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#highlights" class="mobile-nav-link">
+            <span>03 // HACKATHON</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="mobile-nav-link">
+            <span>04 // ABOUT CSE-IOT</span>
+            <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+      </ul>
+
+      <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
+        <a href="program.html" class="btn btn-cyber-primary" style="width: 100%;">
+          <span>View All Events</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Main Content
+         ========================================== -->
+    <main class="main-content">
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section" style="padding: 5rem 0 6rem; position: relative; overflow: hidden;">
+        <div class="container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+          
+          <!-- Department Tag -->
+          <div class="section-tag reveal-fade-up">
+            <span>DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING (IOT including Cybersecurity &amp; Blockchain Technology) PRESENTS</span>
+          </div>
+
+          <!-- Animated Main Title -->
+          <h1 class="glitch-title section-title reveal-fade-up" data-text="SPECTRUM 2026" style="font-size: clamp(2.8rem, 7vw, 5.8rem); margin-bottom: 0.5rem; letter-spacing: 0.08em;">
+            SPECTRUM 2026
+          </h1>
+
+          <!-- Tagline & Theme -->
+          <p class="section-subtitle reveal-fade-up" style="font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--neon-cyan); font-family: var(--font-display); letter-spacing: 0.08em; margin-bottom: 1.5rem;" data-scramble="NEXUS OF HYPER-CONNECTED REALITIES">
+            NEXUS OF HYPER-CONNECTED REALITIES
+          </p>
+
+          <p class="reveal-fade-up" style="max-width: 720px; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2.5rem;">
+            Step into the next evolution of intelligent cyber-physical systems. 2 Days, 12 Flagship Battles, and an electrifying convergence of IoT hardware, AI agents, and competitive cyber esports.
+          </p>
+
+          <!-- Hero Action CTAs -->
+          <div class="hero-actions reveal-fade-up" style="display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3.5rem;">
+            <a href="program.html" class="btn btn-cyber-primary btn-lg">
+              <span>View All Events</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Live Countdown Timer HUD -->
+          <div class="countdown-wrapper reveal-scale-in">
+            <div class="countdown-header">
+              <svg style="width: 16px; height: 16px; color: var(--neon-cyan);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>TELEMETRY TIME TO FEST LAUNCH</span>
+            </div>
+            <div class="countdown-grid">
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-days">24</span>
+                <span class="countdown-label">DAYS</span>
+              </div>
+              <span class="countdown-divider">:</span>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-hours">08</span>
+                <span class="countdown-label">HOURS</span>
+              </div>
+              <span class="countdown-divider">:</span>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-mins">45</span>
+                <span class="countdown-label">MINUTES</span>
+              </div>
+              <span class="countdown-divider">:</span>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-secs">12</span>
+                <span class="countdown-label">SECONDS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRIZE POOL SHOWCASE BANNER -->
+          <div class="reveal-scale-in" style="margin-top: 2.5rem; width: 100%; max-width: 780px;">
+            <div style="background: linear-gradient(135deg, rgba(0, 255, 157, 0.08), rgba(0, 240, 255, 0.08)); border: 1px solid var(--neon-emerald); border-radius: var(--radius-lg); padding: 1.75rem 2rem; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0, 255, 157, 0.15); backdrop-filter: blur(12px);">
+              <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(0, 255, 157, 0.12), transparent); transform: rotate(45deg); animation: shine-loop 5s infinite linear; pointer-events: none;"></div>
+              
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--neon-emerald); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                <svg style="width: 18px; height: 18px; color: var(--neon-emerald);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>GRAND SYMPOSIUM REWARDS</span>
+              </div>
+
+              <div style="font-family: var(--font-display); font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 255, 157, 0.4); line-height: 1.15; margin-bottom: 0.4rem; letter-spacing: 0.04em;">
+                PRIZE POOL <span style="color: var(--neon-emerald);">UP TO ₹1,00,000</span>
+              </div>
+
+              <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+                Cash Prizes, Trophies &amp; Excellence Certificates Across All Events
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BOARDS BANNER -->
+      <section class="stats-section" style="position: relative; z-index: 5;">
+        <div class="container">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 4rem 0;">
+            
+            <!-- Executive Board -->
+            <div class="stat-card reveal-fade-up" style="text-align: left; padding: 2rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border-cyan); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <div class="stat-icon" style="margin: 0; width: 44px; height: 44px; flex-shrink: 0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3 style="font-size: 1.4rem; color: var(--neon-cyan); margin: 0; font-family: var(--font-display); letter-spacing: 0.05em;">EXECUTIVE BOARD</h3>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.25rem; font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-secondary); padding: 0;">
+                <li style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="color: var(--neon-cyan); font-size: 0.75rem; letter-spacing: 0.05em;">PRESIDENT</span>
+                  <strong style="color: #fff; font-size: 1.05rem;">S Abdul Rahiman Shahid</strong>
+                </li>
+                <li style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="color: var(--neon-cyan); font-size: 0.75rem; letter-spacing: 0.05em;">VICE PRESIDENT</span>
+                  <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                    <strong style="color: #fff; font-size: 1.05rem;">1. Mohammad Jinan Kormath</strong>
+                    <strong style="color: #fff; font-size: 1.05rem;">2. Salman Pasha</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Administrative Officers -->
+            <div class="stat-card reveal-fade-up" style="transition-delay: 0.1s; text-align: left; padding: 2rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border-purple); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <div class="stat-icon" style="margin: 0; width: 44px; height: 44px; flex-shrink: 0; color: var(--neon-purple); border-color: var(--border-purple); background: var(--neon-purple-dim);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3 style="font-size: 1.4rem; color: var(--neon-purple); margin: 0; font-family: var(--font-display); letter-spacing: 0.05em;">ADMINISTRATIVE OFFICERS</h3>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.25rem; font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-secondary); padding: 0;">
+                <li style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="color: var(--neon-purple); font-size: 0.75rem; letter-spacing: 0.05em;">SECRETARY</span>
+                  <strong style="color: #fff; font-size: 1.05rem;">Mohammad Suhaib</strong>
+                </li>
+                <li style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="color: var(--neon-purple); font-size: 0.75rem; letter-spacing: 0.05em;">JOINT SECRETARY</span>
+                  <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                    <strong style="color: #fff; font-size: 1.05rem;">1. Suhail N. A.</strong>
+                    <strong style="color: #fff; font-size: 1.05rem;">2. Nithin Kumar</strong>
+                  </div>
+                </li>
+                <li style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <span style="color: var(--neon-purple); font-size: 0.75rem; letter-spacing: 0.05em;">TREASURER</span>
+                  <strong style="color: #fff; font-size: 1.05rem;">Mohammed Shazik</strong>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- NATIONAL LEVEL HACKATHON FEATURED SHOWCASE -->
+      <section id="highlights" class="highlights-section" style="padding: 6rem 0; position: relative;">
+        <div class="container">
+          
+          <div class="section-header">
+            <div class="section-tag reveal-fade-up">
+              <span>FLAGSHIP 24-HOUR CHALLENGE</span>
+            </div>
+            <h2 class="section-title reveal-fade-up">HACKSPECTRA</h2>
+            <p class="section-subtitle reveal-fade-up">
+              The marquee 24-Hour National Hackathon organized by the Department of CSE-IOT. Compete with top engineering minds across India.
+            </p>
+          </div>
+
+          <!-- Featured Grand Hackathon Card -->
+          <div class="hackathon-feature-card reveal-fade-up">
+            
+            <!-- Top Badges Row -->
+            <div class="hack-header-badge-row">
+              <div class="hack-tag-live">
+                <span class="pulse-dot"></span>
+                <span>NATIONAL LEVEL FLAGSHIP • 24 HOURS NON-STOP</span>
+              </div>
+              <div class="hack-prize-hero-badge">
+                <svg style="width: 22px; height: 22px; color: var(--neon-emerald);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <span>24-HOUR FLAGSHIP HACKATHON</span>
+              </div>
+            </div>
+
+            <!-- Title & Pitch -->
+            <h3 class="hack-main-title">
+              NATIONAL LEVEL <span class="gradient-text-cyan">HACKATHON</span>
+            </h3>
+            <p class="hack-main-pitch">
+              A 24-hour national computing battleground. Prototype end-to-end intelligent solutions across Cybersecurity, IoT &amp; Embedded Systems, and Blockchain Technology. Hardware starter kits, compute clusters, and mentorship provided throughout the sprint.
+            </p>
+
+            <!-- Key Metrics Chips Grid -->
+            <div class="hack-meta-chips">
+              <div class="hack-chip">
+                <div class="hack-chip-label">DURATION</div>
+                <div class="hack-chip-val" style="color: var(--neon-cyan);">24 Hours Non-Stop</div>
+              </div>
+              <div class="hack-chip">
+                <div class="hack-chip-label">TEAM SIZE</div>
+                <div class="hack-chip-val">4 Members</div>
+              </div>
+              <div class="hack-chip">
+                <div class="hack-chip-label">DATE &amp; TIME</div>
+                <div class="hack-chip-val">March 26, 09:30 AM</div>
+              </div>
+              <div class="hack-chip">
+                <div class="hack-chip-label">VENUE DECK</div>
+                <div class="hack-chip-val" style="color: var(--neon-purple);">IoT Advanced Lab - Block B</div>
+              </div>
+            </div>
+
+            <!-- Problem Domains / Hack Tracks -->
+            <div style="margin-bottom: 1.5rem;">
+              <h4 style="font-family: var(--font-display); font-size: 1.2rem; color: #ffffff; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem;">
+                <svg style="width: 20px; height: 20px; color: var(--neon-cyan);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+                <span>NATIONAL HACKATHON PRELIMINARY DOMAINS</span>
+              </h4>
+
+              <div class="hack-tracks-grid">
+                
+                <!-- Domain 1: Cybersecurity & Threat Defense -->
+                <div class="hack-track-item">
+                  <div class="hack-track-item-header">
+                    <div class="hack-track-icon" style="color: var(--neon-rose); border-color: rgba(255, 0, 85, 0.4); background: var(--neon-rose-glow);">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </div>
+                    <h5 class="hack-track-title">01 // Cybersecurity &amp; Threat Defense</h5>
+                  </div>
+                  <p class="hack-track-desc">
+                    Innovate in zero-trust architecture, network defense, threat intelligence, cryptography, application security, automated vulnerability analysis, and other cybersecurity-related paradigms.
+                  </p>
+                </div>
+
+                <!-- Domain 2: IoT & Smart Embedded Systems -->
+                <div class="hack-track-item">
+                  <div class="hack-track-item-header">
+                    <div class="hack-track-icon" style="color: var(--neon-cyan); border-color: var(--border-cyan); background: var(--neon-cyan-dim);">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="1" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="23"></line><line x1="1" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="23" y2="12"></line></svg>
+                    </div>
+                    <h5 class="hack-track-title">02 // IoT &amp; Smart Embedded Systems</h5>
+                  </div>
+                  <p class="hack-track-desc">
+                    Pioneer smart cities, industrial automation, edge computing micro-nodes, sensor mesh networks, connected healthcare devices, and other next-generation IoT or embedded system solutions.
+                  </p>
+                </div>
+
+                <!-- Domain 3: Blockchain & Decentralized Technology -->
+                <div class="hack-track-item">
+                  <div class="hack-track-item-header">
+                    <div class="hack-track-icon" style="color: var(--neon-purple); border-color: var(--border-purple); background: var(--neon-purple-dim);">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h5 class="hack-track-title">03 // Blockchain &amp; Decentralized Technology</h5>
+                  </div>
+                  <p class="hack-track-desc">
+                    Build smart contracts, Web3 applications, decentralized finance (DeFi), autonomous supply chain tracking, verifiable dApps, and other robust blockchain-based solutions.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+
+
+            <!-- Bottom Action Row -->
+            <div class="hack-bottom-action-row" style="display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+              <div style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--text-secondary);">
+                <strong style="color: #fff;">Lead Coordinators:</strong> Dr. GOPINATH SIDDAN &amp; Prof. ALLWIN JACOB
+              </div>
+
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-cyber-outline btn-lg open-hackathon-details-btn" style="border-color: var(--neon-cyan); color: #fff;">
+                  <svg style="width: 20px; height: 20px; color: var(--neon-cyan);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  <span>Hackathon Rules &amp; Details</span>
+                </button>
+                <a href="https://spectrum24h-hackathon.fillout.com/registration" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary btn-lg">
+                  <span>Register for National Hackathon</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ABOUT CSE-IOT & DEPARTMENT SHOWCASE -->
+      <section id="about" class="about-section" style="padding: 6rem 0 8rem; position: relative;">
+        <div class="container">
+          
+          <div class="cyber-box about-box">
+            <div class="about-grid">
+              
+              <div>
+                <div class="section-tag" style="margin-bottom: 1.25rem;">
+                  <span>ABOUT THE DEPARTMENT</span>
+                </div>
+                <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin-bottom: 1.25rem; line-height: 1.2;">
+                  PIONEERING THE INTERNET OF THINGS AT <span class="gradient-text-cyan">CSE-IOT</span>
+                </h2>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                  The Department of Computer Science and Engineering (Internet of Things) stands at the forefront of hyper-connected computing. Our curriculum and research encompass advanced <strong style="color: var(--neon-cyan);">Internet of Things &amp; Embedded Systems</strong>, robust <strong style="color: var(--neon-rose);">Cybersecurity &amp; Threat Defense</strong>, and cutting-edge <strong style="color: var(--neon-purple);">Blockchain &amp; Decentralized Technology</strong> — empowering students to engineer autonomous, tamper-proof, and cyber-resilient architectures for the future.
+                </p>
+
+                <div class="dept-features-grid">
+                  <div class="dept-feature-item">
+                    <svg style="width: 18px; height: 18px; color: var(--neon-cyan);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span>IoT &amp; Embedded Systems Lab</span>
+                  </div>
+                  <div class="dept-feature-item">
+                    <svg style="width: 18px; height: 18px; color: var(--neon-rose);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>Cybersecurity &amp; Defense Grid</span>
+                  </div>
+                  <div class="dept-feature-item">
+                    <svg style="width: 18px; height: 18px; color: var(--neon-purple);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                    <span>Blockchain &amp; Smart Contracts</span>
+                  </div>
+                  <div class="dept-feature-item">
+                    <svg style="width: 18px; height: 18px; color: var(--neon-emerald);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Edge AI &amp; 5G Prototyping</span>
+                  </div>
+                </div>
+
+                <a href="program.html" class="btn btn-cyber-outline">
+                  <span>Register For Department Fest</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+              </div>
+
+              <!-- Terminal Telemetry Card -->
+              <div class="terminal-telemetry-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                  <div style="display: flex; gap: 6px;">
+                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                  </div>
+                  <span style="font-size: 0.72rem; color: var(--neon-cyan);">TELEMETRY://IONITIX-NODE-01</span>
+                </div>
+
+                <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7;">
+                  <p style="color: var(--neon-emerald);">$ systemctl status ionitix.service</p>
+                  <p>● ionitix.service - CSE-IOT Fest 2026 Core</p>
+                  <p>&nbsp;&nbsp;Active: <span style="color: var(--neon-emerald);">active (running)</span></p>
+                  <p>&nbsp;&nbsp;Domains: <span style="color: var(--neon-cyan);">IoT</span> • <span style="color: var(--neon-rose);">CyberSec</span> • <span style="color: var(--neon-purple);">Blockchain</span></p>
+                  <p>&nbsp;&nbsp;Latency: <span style="color: var(--neon-cyan);">4.2ms (Zero Packet Loss)</span></p>
+                  <p>&nbsp;&nbsp;Security: <span style="color: var(--neon-rose);">Zero-Trust &amp; Cryptographic Mesh</span></p>
+                  <p style="margin-top: 0.75rem; color: var(--neon-purple);">$ ionitix --deploy --target=campus-grid</p>
+                  <p style="color: #fff;">>> [SUCCESS] 10 Flagship Events Active.</p>
+                  <p style="color: #fff;">>> [STATUS] Registration Gateway: OPEN</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ==========================================
+         Technocore Footer
+         ========================================== -->
+    <footer class="cyber-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-brand">
+            <div class="nav-brand" style="margin-bottom: 1rem;">
+              <div class="brand-logo-icon has-img">
+                <img src="logo.png" alt="IONITIX Logo">
+              </div>
+              <div class="brand-text">
+                <div class="brand-title">IONITIX<span>.26</span></div>
+                <div class="brand-subtitle">DEPT OF CSE-IOT</div>
+              </div>
+            </div>
+            <p>
+              The premier national-level technical symposium of the Department of Computer Science &amp; Engineering (IoT). Powering hyper-connected innovations.
+            </p>
+            <div style="margin-top: 1.25rem;">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon-only" title="Instagram (@ionitix.iot)" aria-label="Instagram">
+                <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">NAVIGATION</h4>
+            <ul class="footer-links">
+              <li><a href="index.html" class="footer-link">Home Portal</a></li>
+              <li><a href="program.html" class="footer-link">All Events (10)</a></li>
+              <li><a href="program.html?tab=tech" class="footer-link">Technical Events (3)</a></li>
+              <li><a href="program.html?tab=non-tech" class="footer-link">Non-Technical &amp; Gaming (6)</a></li>
+              <li><a href="program.html?tab=special" class="footer-link">Special Event (Reel Making)</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">CHANNELS</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-link">
+                  <svg style="width: 16px; height: 16px; color: #e1306c;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                  <span>Instagram (@ionitix.iot)</span>
+                </a>
+              </li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn Symposium</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">CAMPUS VENUE</h4>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>CSE-IOT Block, Main Engineering Campus, Tech City</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>ionitix.fest@cseiothub.edu</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210 / +91 98765 43211</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 IONITIX — Department of CSE (IoT). All Systems Nominal.</div>
+          <div class="footer-coords">LAT 12.9716° N // LON 77.5946° E [GRID MESH V4.2]</div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/audio.js"></script>
+  <script src="scripts/canvas-mesh.js?v=20"></script>
+  <script src="scripts/events-data.js?v=20"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/app.js?v=20"></script>
+
+  <!-- Inline Countdown Guarantee (runs even if app.js cached) -->
+  <script>
+    (function() {
+      const target = new Date('2026-09-22T09:00:00+05:30').getTime();
+      function tick() {
+        const now = new Date().getTime();
+        const diff = target - now;
+        if (diff <= 0) {
+          ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerText = '00';
+          });
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        const pad = n => String(n).padStart(2, '0');
+        const set = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = pad(v); };
+        set('cd-days', d);
+        set('cd-hours', h);
+        set('cd-mins', m);
+        set('cd-secs', s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+
+  <!-- ==========================================
+       National Hackathon Rules & Format Modal
+       ========================================== -->
+  <div class="cyber-modal-backdrop" id="hackathon-modal-backdrop">
+    <div class="cyber-modal" style="max-width: 840px; width: 92%;">
+      
+      <!-- Modal Header -->
+      <div class="modal-header" style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.25rem;">
+        <div class="modal-header-info">
+          <div class="section-tag" style="background: rgba(196, 30, 58, 0.15); border-color: var(--primary-burgundy); color: #FF7088;">FLAGSHIP 24H HACKATHON // OFFICIAL GUIDELINES</div>
+          <h2 style="font-size: 1.75rem; color: #fff; margin-top: 0.35rem;">HACKSPECTRA // NATIONAL HACKATHON</h2>
+          <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">// General Rules, Preliminary Round Format &amp; Final Round Guidelines</p>
+        </div>
+        <button class="modal-close-btn" id="hackathon-modal-close-btn" aria-label="Close Dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" style="padding: 1.5rem 1.75rem 2rem; max-height: 75vh; overflow-y: auto;">
+        
+        <!-- Key Meta Highlights Chips -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-mono);">
+            <span style="color: var(--text-muted); display: block; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 0.2rem;">Team Requirement</span>
+            <strong style="color: var(--neon-rose); font-size: 0.95rem;">Exactly 4 Members</strong>
+          </div>
+          <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-mono);">
+            <span style="color: var(--text-muted); display: block; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 0.2rem;">Institution</span>
+            <strong style="color: #ffffff; font-size: 0.95rem;">Same College / University</strong>
+          </div>
+          <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-mono);">
+            <span style="color: var(--text-muted); display: block; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 0.2rem;">Preliminary Fee</span>
+            <strong style="color: var(--neon-emerald); font-size: 0.95rem;">FREE (No Entry Fee)</strong>
+          </div>
+        </div>
+
+        <!-- Section 1: General Rules -->
+        <div style="margin-bottom: 2.25rem;">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #ffffff; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
+            <svg style="width: 22px; height: 22px; color: var(--primary-burgundy);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 11 12 14 22 4"></polyline></svg>
+            <span>GENERAL RULES</span>
+          </h3>
+
+          <ul style="display: flex; flex-direction: column; gap: 0.85rem; list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">01 //</span>
+              <span>A team must consist of <strong>exactly 4 members</strong>.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">02 //</span>
+              <span>All team members must belong to the <strong>same college/university</strong>.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">03 //</span>
+              <span>Participants must bring their own <strong>laptops, chargers, power adapters, extension boards, mouse</strong>, and any other accessories or equipment needed for development.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">04 //</span>
+              <span>Participants are expected to maintain professionalism, discipline, and decorum throughout the event and treat fellow participants, mentors, judges, and organizers with respect.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">05 //</span>
+              <span>Teams must adhere to the event schedule. Late submissions or delays may result in disqualification.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">06 //</span>
+              <span>Any form of plagiarism, cheating, or unfair means will lead to immediate disqualification.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">07 //</span>
+              <span>The decision of the judges and organizing committee shall be final and binding.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">08 //</span>
+              <span>Teams must create the repository using the organizer-provided GitHub account and must push their latest code <strong>at least once every hour</strong> throughout the hackathon to maintain a record of their progress.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+              <span style="color: var(--primary-burgundy); font-family: var(--font-mono); font-weight: 700; min-width: 35px;">09 //</span>
+              <span>Sleeping beds will be provided by the organizers at night.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 2: Event Format -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #ffffff; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
+            <svg style="width: 22px; height: 22px; color: var(--neon-cyan);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>EVENT FORMAT</span>
+          </h3>
+
+          <!-- Preliminary Round Box -->
+          <div style="background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-cyan); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--neon-cyan); margin: 0;">STAGE 01 // PRELIMINARY ROUND</h4>
+              <span style="font-family: var(--font-mono); font-size: 0.78rem; background: rgba(0, 240, 255, 0.12); color: var(--neon-cyan); border: 1px solid var(--border-cyan); padding: 0.2rem 0.6rem; border-radius: 20px;">PPT PROPOSAL SUBMISSION</span>
+            </div>
+            
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem;">
+              Teams must submit a <strong>PowerPoint presentation (PPT)</strong> presenting their proposed solution by choosing any one of the following domains:
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1rem;">
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                <strong style="color: var(--neon-rose); font-family: var(--font-mono); font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">🛡️ Cybersecurity &amp; Threat Defense</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Examples include zero-trust architecture, network defense, threat intelligence, cryptography, application security, and other cybersecurity-related innovations.</p>
+              </div>
+
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                <strong style="color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">⚡ IoT &amp; Smart Embedded Systems</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Examples include smart cities, industrial automation, edge computing, sensor networks, healthcare devices, and other IoT or embedded system solutions.</p>
+              </div>
+
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                <strong style="color: var(--neon-purple); font-family: var(--font-mono); font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">🔗 Blockchain &amp; Decentralized Technology</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Examples include smart contracts, Web3 applications, decentralized finance (DeFi), supply chain tracking, dApps, and other blockchain-based solutions.</p>
+              </div>
+            </div>
+
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.03); padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-cyan);">
+              <strong>Note:</strong> The examples listed above are illustrative only. Teams are free to propose any innovative idea that falls within the selected domain.
+            </div>
+          </div>
+
+          <!-- Final Round Box -->
+          <div style="background: rgba(196, 30, 58, 0.05); border: 1px solid var(--primary-burgundy); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: #FF7088; margin: 0;">STAGE 02 // FINAL ROUND (TOP 20 SHORTLISTED)</h4>
+              <span style="font-family: var(--font-mono); font-size: 0.78rem; background: rgba(196, 30, 58, 0.15); color: #FF7088; border: 1px solid var(--primary-burgundy); padding: 0.2rem 0.6rem; border-radius: 20px;">24H ON-SITE SPRINT</span>
+            </div>
+
+            <ul style="display: flex; flex-direction: column; gap: 0.6rem; list-style: none; padding: 0; margin-bottom: 1rem;">
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55;">
+                <span style="color: #FF7088;">&bull;</span>
+                <span>The <strong>top 20 ideas</strong> from the preliminary round will be shortlisted for the finals.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55;">
+                <span style="color: #FF7088;">&bull;</span>
+                <span>Shortlisted teams must build and present a working solution at the event venue.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55;">
+                <span style="color: #FF7088;">&bull;</span>
+                <span>Finalists will be provided with an <strong>on-the-spot problem statement/theme</strong> during the event and will be required to design and build a working solution within the given time.</span>
+              </li>
+            </ul>
+
+            <!-- Registration Fee Alert Box -->
+            <div style="font-family: var(--font-mono); font-size: 0.82rem; color: #ffbd2e; background: rgba(255, 189, 46, 0.08); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 189, 46, 0.3); display: flex; align-items: center; gap: 0.6rem;">
+              <svg style="width: 20px; height: 20px; color: #ffbd2e; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span><strong>Note:</strong> Registration fees are applicable ONLY to teams shortlisted for the final round. No registration fee is required at the preliminary round stage.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer Action Row -->
+        <div style="text-align: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: flex-end; gap: 1rem; flex-wrap: wrap;">
+          <a href="HackSpectra_brochure.pdf" download="HackSpectra_brochure.pdf" target="_blank" class="btn btn-cyber-primary btn-lg" style="justify-content: center;">
+            <span>Download Brochure</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

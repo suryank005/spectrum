@@ -1,0 +1,310 @@
+/* ==========================================================================
+   IONITIX - ANIMATIONS & CYBERNETIC VISUAL FX
+   Glitch keyframes, radar scanlines, magnetic hover physics, circuit glows
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Glitch Text Effect
+   ========================================================================== */
+
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-shadow: 0 0 20px var(--neon-cyan-glow);
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+.glitch-title::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon-rose);
+  animation: glitch-anim-1 3.5s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+  left: -2px;
+  text-shadow: 2px 0 var(--neon-cyan);
+  animation: glitch-anim-2 2.8s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(0.8deg);
+  }
+  40% {
+    clip-path: inset(10% 0 85% 0);
+    transform: skew(-0.5deg);
+  }
+  60% {
+    clip-path: inset(70% 0 12% 0);
+    transform: skew(0.2deg);
+  }
+  80% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(-0.8deg);
+  }
+  100% {
+    clip-path: inset(54% 0 32% 0);
+    transform: skew(0.4deg);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(-0.6deg);
+  }
+  20% {
+    clip-path: inset(70% 0 12% 0);
+    transform: skew(0.4deg);
+  }
+  40% {
+    clip-path: inset(40% 0 43% 0);
+    transform: skew(-0.2deg);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: skew(0.7deg);
+  }
+  80% {
+    clip-path: inset(15% 0 70% 0);
+    transform: skew(-0.4deg);
+  }
+  100% {
+    clip-path: inset(62% 0 20% 0);
+    transform: skew(0.1deg);
+  }
+}
+
+/* ==========================================================================
+   2. Pulses, Dots & Rings
+   ========================================================================== */
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 0.8;
+  }
+  50%, 100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes shine-loop {
+  0% {
+    transform: translate(-100%, -100%) rotate(45deg);
+  }
+  20%, 100% {
+    transform: translate(100%, 100%) rotate(45deg);
+  }
+}
+
+/* ==========================================================================
+   3. Floating Hologram and IoT Rings
+   ========================================================================== */
+
+.float-slow {
+  animation: float-y 5s infinite ease-in-out;
+}
+
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.radar-spin {
+  animation: rotate-360 12s infinite linear;
+}
+
+@keyframes rotate-360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   4. Page Transition Cyber Shutter Curtain
+   ========================================================================== */
+
+.page-transition-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.shutter-stripe {
+  flex: 1;
+  background: #04060c;
+  border-bottom: 1px solid var(--border-cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.page-transition-curtain.active .shutter-stripe {
+  transform: scaleX(1);
+}
+
+.page-transition-curtain.revealing .shutter-stripe {
+  transform-origin: right;
+  transform: scaleX(0);
+}
+
+/* Shutter Center Cyber Status */
+.shutter-status {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 15px var(--neon-cyan);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.page-transition-curtain.active .shutter-status {
+  opacity: 1;
+}
+
+.page-transition-curtain.revealing .shutter-status {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   5. Staggered Entrance and Reveal Classes
+   ========================================================================== */
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale-in.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   6. Cyber Scanlines & Circuit Trace
+   ========================================================================== */
+
+.cyber-trace-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  box-shadow: 0 0 8px var(--neon-cyan);
+  animation: scan-horizontal 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes scan-horizontal {
+  0% {
+    left: -30%;
+    width: 30%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    width: 30%;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   1-Second Warning Alert Blink
+   ========================================================================== */
+
+.blink-warning {
+  animation: warning-blink 1s steps(1) infinite !important;
+}
+
+@keyframes warning-blink {
+  0%, 100% {
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0 0 15px rgba(255, 95, 86, 0.6);
+  }
+  50% {
+    opacity: 0.15;
+    box-shadow: none;
+  }
+}

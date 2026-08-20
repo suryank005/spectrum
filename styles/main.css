@@ -1,0 +1,376 @@
+/* ==========================================================================
+   IONITIX - CSE-IOT COLLEGE FEST DESIGN SYSTEM
+   Theme: Technocore / Cyber-Physical IoT Mesh
+   Palette: Obsidian Dark, Burgundy (#C41E3A), Rose-Gold (#B76E79), Warm Gold (#D4AF37)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core Dark Palette with Burgundy warmth */
+  --bg-primary: #0a0608;
+  --bg-secondary: #120a0e;
+  --bg-tertiary: #1a0f14;
+  --bg-card: rgba(20, 10, 14, 0.75);
+  --bg-card-hover: rgba(30, 16, 22, 0.85);
+  --bg-glass: rgba(15, 8, 12, 0.6);
+  --bg-hud: rgba(14, 6, 10, 0.9);
+
+  /* Burgundy Accents (replaces cyan) */
+  --neon-cyan: #C41E3A;
+  --neon-cyan-glow: rgba(196, 30, 58, 0.45);
+  --neon-cyan-dim: rgba(196, 30, 58, 0.15);
+  
+  /* Rose-Gold (replaces purple) */
+  --neon-purple: #B76E79;
+  --neon-purple-glow: rgba(183, 110, 121, 0.45);
+  --neon-purple-dim: rgba(183, 110, 121, 0.15);
+  
+  /* Warm Gold (replaces emerald) */
+  --neon-emerald: #D4AF37;
+  --neon-emerald-glow: rgba(212, 175, 55, 0.45);
+  --neon-emerald-dim: rgba(212, 175, 55, 0.15);
+
+  --neon-amber: #E8A87C;
+  --neon-amber-glow: rgba(232, 168, 124, 0.4);
+  --neon-rose: #8B0000;
+  --neon-rose-glow: rgba(139, 0, 0, 0.4);
+
+  /* Borders & Grid lines */
+  --border-cyan: rgba(196, 30, 58, 0.3);
+  --border-cyan-bright: rgba(196, 30, 58, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-purple: rgba(183, 110, 121, 0.3);
+  
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #b0a0a5;
+  --text-muted: #7a6b70;
+  --text-cyan: #e07080;
+  --text-emerald: #D4AF37;
+
+  /* Typography */
+  --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-subheading: 'Rajdhani', 'Orbitron', sans-serif;
+  --font-body: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Dimensions & Spacing */
+  --nav-height: 76px;
+  --container-max: 1280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Shadows & Glows */
+  --shadow-neon-cyan: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.1);
+  --shadow-neon-purple: 0 0 20px rgba(183, 110, 121, 0.3), 0 0 40px rgba(183, 110, 121, 0.1);
+  --shadow-neon-emerald: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(196, 30, 58, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Setup
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Cyber Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(196, 30, 58, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+::selection {
+  background: var(--neon-cyan);
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* ==========================================================================
+   Background Tech Canvas & Grid Overlays
+   ========================================================================== */
+
+#iot-mesh-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.cyber-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(196, 30, 58, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(196, 30, 58, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+}
+
+.cyber-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 6, 8, 0.85) 90%);
+}
+
+.scanline-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(196, 30, 58, 0.03),
+    rgba(183, 110, 121, 0.01),
+    rgba(212, 175, 55, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Page Container & Layout
+   ========================================================================== */
+
+.app-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: var(--nav-height);
+}
+
+/* ==========================================================================
+   Typography Utilities
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-subheading {
+  font-family: var(--font-subheading);
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #ffffff 10%, var(--neon-cyan) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #ffffff 10%, var(--neon-purple) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-multi {
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, #B76E79 50%, var(--neon-emerald) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 15px var(--neon-cyan-glow), 0 0 30px rgba(196, 30, 58, 0.2);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 15px var(--neon-purple-glow), 0 0 30px rgba(183, 110, 121, 0.2);
+}
+
+.glow-text-emerald {
+  text-shadow: 0 0 15px var(--neon-emerald-glow), 0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+/* Text Decrypt / Scramble helper */
+[data-scramble] {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Section Header Component */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--neon-cyan);
+  background: var(--neon-cyan-dim);
+  border: 1px solid var(--border-cyan);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.section-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* Cyber Corner Trims (Tech aesthetic decorations) */
+.cyber-box {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  transition: var(--transition-normal);
+}
+
+.cyber-box::before,
+.cyber-box::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  transition: var(--transition-normal);
+}
+
+.cyber-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--neon-cyan);
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.cyber-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--neon-cyan);
+  border-right: 2px solid var(--neon-cyan);
+}
+
+.cyber-box:hover {
+  border-color: var(--border-cyan);
+  box-shadow: var(--shadow-card);
+}
+
+.cyber-box:hover::before,
+.cyber-box:hover::after {
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
