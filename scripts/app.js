@@ -171,16 +171,33 @@ class IonitixApp {
     }
 
     // Handle internal links
-    const internalLinks = document.querySelectorAll('a[href$=".html"], a[href^="./"], a[href^="/"]');
+    const internalLinks = document.querySelectorAll('a[href$=".html"], a[href*=".html#"], a[href^="./"], a[href^="/"], a[href^="#"]');
 
     internalLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
+      if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
         return;
       }
 
       link.addEventListener('click', (e) => {
-        // Prevent default navigation for smooth transition
+        try {
+          const targetUrl = new URL(href, window.location.origin + window.location.pathname);
+          const isSamePage = targetUrl.pathname.endsWith(window.location.pathname.split('/').pop() || 'index.html');
+
+          if (targetUrl.hash) {
+            const targetEl = document.querySelector(targetUrl.hash);
+            if (targetEl && (isSamePage || href.startsWith('#'))) {
+              e.preventDefault();
+              if (window.CyberAudio) window.CyberAudio.playClick();
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+              return;
+            }
+          }
+        } catch (err) {}
+
+        if (href.startsWith('#')) return;
+
+        // Prevent default navigation for smooth shutter transition
         e.preventDefault();
         if (window.CyberAudio) window.CyberAudio.playClick();
 

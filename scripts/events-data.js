@@ -310,7 +310,7 @@ const IONITIX_EVENTS = [
     fullDesc: 'Capture the essence and electrifying atmosphere of IONITIX 2026! Participants create 30 to 60-second vertical reels (Instagram format) featuring dynamic transitions, event highlights, tech showcases, and creative visual storytelling. Top viral and creative entries will be awarded on stage during the Grand Valedictory.',
     rules: [
       'Reel format: Vertical 9:16 (1080x1920) between 30 and 60 seconds duration.',
-      'Must tag official handle @ionitix.iot and use official hashtag #IONITIX2026.',
+      'Must tag official handle @ionitix.official and use official hashtag #IONITIX2026.',
       'Judged on Creative Visual Editing (35%), Storytelling & Vibe (35%), and Engagement/Reach (30%).',
       'Footage must be captured strictly within the fest premises on Day 3.'
     ],

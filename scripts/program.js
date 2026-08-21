@@ -111,6 +111,14 @@ class ProgramController {
     if (this.modalCloseBtn) {
       this.modalCloseBtn.addEventListener('click', () => this.closeModal());
     }
+    const csCloseBtn = document.getElementById('modal-cs-close-btn');
+    if (csCloseBtn) {
+      csCloseBtn.addEventListener('click', () => this.closeModal());
+    }
+    const csTopCloseBtn = document.getElementById('modal-cs-top-close-btn');
+    if (csTopCloseBtn) {
+      csTopCloseBtn.addEventListener('click', () => this.closeModal());
+    }
     if (this.modalBackdrop) {
       this.modalBackdrop.addEventListener('click', (e) => {
         if (e.target === this.modalBackdrop) this.closeModal();
@@ -258,7 +266,16 @@ class ProgramController {
       }
 
       this.eventsGrid.innerHTML = filtered.map(ev => `
-        <div class="cyber-box special-event-card reveal-fade-up is-revealed" style="grid-column: 1 / -1; width: 100%;">
+        <div class="cyber-box special-event-card reveal-fade-up is-revealed" data-event-id="${ev.id}" style="grid-column: 1 / -1; width: 100%;">
+          ${ev.isComingSoon !== false ? `
+            <div class="coming-soon-overlay" data-event-id="${ev.id}">
+              <div class="coming-soon-badge">COMING SOON....!!</div>
+              <div class="coming-soon-subtext">
+                <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>Click to View Event Brief &amp; Details</span>
+              </div>
+            </div>
+          ` : ''}
           ${ev.cardImage ? `
             <div style="position: relative; width: 100%; height: 240px; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255, 189, 46, 0.4); background: #000;">
               <div style="position: absolute; inset: 0; background-image: url('${ev.cardImage}'); background-size: cover; background-position: center; filter: blur(16px) brightness(0.45); opacity: 0.85; transform: scale(1.15);"></div>
@@ -272,7 +289,7 @@ class ProgramController {
                 <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffbd2e;">Day 3</span>
               </div>
               <h3 style="font-size: 1.75rem; color: #ffffff; margin-bottom: 0.5rem; font-family: var(--font-display);">${ev.title}</h3>
-              <p style="font-family: var(--font-mono); font-size: 0.85rem; color: #ffbd2e; margin-bottom: 1rem;">// ${ev.tagline}</p>
+              <p style="font-family: var(--font-mono); font-size: 0.85rem; color: #ffbd2e; margin-bottom: 1rem;">${ev.tagline}</p>
               <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
                 ${ev.fullDesc}
               </p>
@@ -300,10 +317,14 @@ class ProgramController {
         </div>
       `).join('');
 
-      this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-event-id');
-          this.openModal(id);
+      this.eventsGrid.querySelectorAll('.open-details-btn, .coming-soon-overlay, .special-event-card').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const card = btn.closest('[data-event-id]');
+          const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
+          if (id) {
+            e.preventDefault();
+            this.openModal(id);
+          }
         });
       });
       return;
@@ -345,6 +366,15 @@ class ProgramController {
 
     this.eventsGrid.innerHTML = filtered.map(ev => `
       <div class="event-card reveal-fade-up is-revealed" data-event-id="${ev.id}">
+        ${ev.isComingSoon !== false ? `
+          <div class="coming-soon-overlay" data-event-id="${ev.id}">
+            <div class="coming-soon-badge">COMING SOON....!!</div>
+            <div class="coming-soon-subtext">
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Click to View Event Brief &amp; Details</span>
+            </div>
+          </div>
+        ` : ''}
         ${ev.cardImage ? `
           <div class="event-card-banner">
             <div class="banner-bg-blur" style="background-image: url('${ev.cardImage}');"></div>
@@ -359,7 +389,7 @@ class ProgramController {
         </div>
 
         <h3 class="event-title">${ev.title}</h3>
-        <p class="event-tagline">// ${ev.tagline}</p>
+        <p class="event-tagline">${ev.tagline}</p>
         <p class="event-description">${ev.shortDesc}</p>
 
         <div class="event-meta-grid">
@@ -383,10 +413,14 @@ class ProgramController {
     `).join('');
 
     // Re-bind click handlers
-    this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
+    this.eventsGrid.querySelectorAll('.event-card, .open-details-btn, .coming-soon-overlay').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const id = btn.getAttribute('data-event-id');
-        this.openModal(id);
+        const card = btn.closest('[data-event-id]');
+        const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
+        if (id) {
+          e.preventDefault();
+          this.openModal(id);
+        }
       });
     });
 
@@ -431,7 +465,7 @@ class ProgramController {
 
     // Populate modal data
     if (this.modalTitle) this.modalTitle.innerText = event.title;
-    if (this.modalTagline) this.modalTagline.innerText = `// ${event.tagline}`;
+    if (this.modalTagline) this.modalTagline.innerText = event.tagline;
     if (this.modalCategoryBadge) {
       this.modalCategoryBadge.innerText = `${event.category.toUpperCase()} • ${event.typeTag}`;
       this.modalCategoryBadge.className = `section-tag ${event.category}`;
@@ -474,10 +508,58 @@ class ProgramController {
       this.modalCoordinators.innerHTML = html;
     }
 
-    // Set registration link
+    // Set registration link & button state
     const regBtn = document.getElementById('modal-register-btn');
     if (regBtn) {
-      regBtn.href = event.registrationUrl || 'https://spectrum24h-hackathon.fillout.com/registration';
+      const isHackathonEvent = (event.id === 'hack-o-nova' || event.id === 'hackspectra' || event.isHackathon);
+      
+      if (event.registrationUrl) {
+        regBtn.href = event.registrationUrl;
+        regBtn.target = '_blank';
+        regBtn.style.opacity = '1';
+        regBtn.style.cursor = 'pointer';
+        regBtn.innerHTML = `
+          <span>REGISTER FOR EVENT</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        `;
+        regBtn.onclick = null;
+      } else if (isHackathonEvent) {
+        regBtn.href = 'https://spectrum24h-hackathon.fillout.com/registration';
+        regBtn.target = '_blank';
+        regBtn.style.opacity = '1';
+        regBtn.style.cursor = 'pointer';
+        regBtn.innerHTML = `
+          <span>REGISTER FOR HACKATHON</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        `;
+        regBtn.onclick = null;
+      } else {
+        regBtn.href = 'javascript:void(0)';
+        regBtn.removeAttribute('target');
+        regBtn.style.opacity = '0.85';
+        regBtn.style.cursor = 'pointer';
+        regBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; color: #ffbd2e;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>REGISTRATION LINK COMING SOON</span>
+        `;
+        regBtn.onclick = (e) => {
+          e.preventDefault();
+          if (window.App && typeof window.App.showToast === 'function') {
+            window.App.showToast('Registration link for this event will be available soon!', 'info');
+          }
+        };
+      }
+    }
+
+    // Modal Coming Soon Blurred Screen handling
+    const modalCsOverlay = document.getElementById('modal-coming-soon-overlay');
+    if (modalCsOverlay) {
+      const isHackathonEvent = (event.id === 'hack-o-nova' || event.id === 'hackspectra' || event.isHackathon);
+      if (event.isComingSoon === false || isHackathonEvent) {
+        modalCsOverlay.style.display = 'none';
+      } else {
+        modalCsOverlay.style.display = 'flex';
+      }
     }
 
     // Show modal

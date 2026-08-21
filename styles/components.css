@@ -89,22 +89,21 @@
 }
 
 .brand-logo-icon img {
-  height: 48px;
+  height: 64px;
   width: auto;
-  max-width: 140px;
+  max-width: 240px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(196, 30, 58, 0.5));
+  filter: drop-shadow(0 0 10px rgba(196, 30, 58, 0.6));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .nav-brand:hover .brand-logo-icon img {
   transform: scale(1.06);
-  filter: drop-shadow(0 0 16px rgba(196, 30, 58, 0.85));
+  filter: drop-shadow(0 0 18px rgba(196, 30, 58, 0.9));
 }
 
 .brand-text {
-  display: flex;
-  flex-direction: column;
+  display: none !important;
 }
 
 .brand-title {
@@ -1703,6 +1702,117 @@
   overflow: hidden;
 }
 
+/* ==========================================================================
+   Blurred Coming Soon Overlay for Event Cards
+   ========================================================================== */
+/* ==========================================================================
+   Blurred Coming Soon Overlays for Event Cards, Modal, and Filter Pills
+   ========================================================================== */
+.coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  background: rgba(6, 3, 7, 0.96);
+  backdrop-filter: blur(32px) brightness(0.15);
+  -webkit-backdrop-filter: blur(32px) brightness(0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+  user-select: none;
+}
+
+.event-card:hover .coming-soon-overlay,
+.special-event-card:hover .coming-soon-overlay {
+  background: rgba(6, 3, 7, 0.93);
+  backdrop-filter: blur(28px) brightness(0.2);
+  -webkit-backdrop-filter: blur(28px) brightness(0.2);
+}
+
+.coming-soon-badge {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #ffbd2e;
+  text-shadow: 0 0 15px rgba(255, 189, 46, 0.8), 0 0 30px rgba(255, 189, 46, 0.4);
+  background: rgba(255, 189, 46, 0.14);
+  border: 1.5px solid rgba(255, 189, 46, 0.55);
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(255, 189, 46, 0.2);
+  animation: warning-blink 2s steps(1) infinite;
+}
+
+.coming-soon-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(196, 30, 58, 0.15);
+  border: 1px solid var(--border-cyan);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  text-shadow: 0 0 8px rgba(196, 30, 58, 0.5);
+}
+
+.modal-coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: rgba(5, 3, 6, 0.97);
+  backdrop-filter: blur(36px) brightness(0.15);
+  -webkit-backdrop-filter: blur(36px) brightness(0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.95);
+}
+
+.filter-pills-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+}
+
+.pills-coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 12;
+  background: rgba(6, 3, 7, 0.95);
+  backdrop-filter: blur(28px) brightness(0.15);
+  -webkit-backdrop-filter: blur(28px) brightness(0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  user-select: none;
+}
+
 .special-event-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -1803,7 +1913,8 @@
     height: 36px;
   }
   .brand-logo-icon img {
-    height: 38px;
+    height: 52px;
+    max-width: 180px;
   }
   .brand-logo-icon svg {
     width: 18px;
