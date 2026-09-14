@@ -90,12 +90,12 @@ class ProgramController {
       this.tabSpecial.addEventListener('click', () => this.switchCategory('special'));
     }
 
-    // Global event detail button bindings (including showcase cards)
+    // Open PDF brochure on details click if fallback triggered
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.open-details-btn');
-      if (btn) {
-        const id = btn.getAttribute('data-event-id');
-        if (id) this.openModal(id);
+      if (btn && (!btn.getAttribute('href') || btn.getAttribute('href') === '#')) {
+        e.preventDefault();
+        window.open('brochure-events.pdf', '_blank');
       }
     });
 
@@ -304,7 +304,7 @@ class ProgramController {
                   <span>Register Now</span>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
-                <a href="BROCHURE TECH &amp; NON TECH EVENTS.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline open-details-btn" style="width: 100%; justify-content: center; text-decoration: none;">
+                <a href="brochure-events.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline open-details-btn" style="width: 100%; justify-content: center; text-decoration: none;">
                   <span>View Details</span>
                 </a>
               </div>
@@ -381,7 +381,7 @@ class ProgramController {
         </div>
 
         <div class="event-card-footer" style="display: flex; gap: 0.5rem; justify-content: space-between;">
-          <a href="BROCHURE TECH &amp; NON TECH EVENTS.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline btn-sm open-details-btn" style="flex: 1; justify-content: center; text-decoration: none;">
+          <a href="brochure-events.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline btn-sm open-details-btn" style="flex: 1; justify-content: center; text-decoration: none;">
             <span>Details</span>
           </a>
           <a href="${ev.registrationUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary btn-sm direct-register-btn" style="flex: 1; justify-content: center; text-decoration: none;">
@@ -391,16 +391,6 @@ class ProgramController {
         </div>
       </div>
     `).join('');
-
-    // Re-bind click handlers for details button
-    this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const card = btn.closest('[data-event-id]');
-        const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
-        if (id) this.openModal(id);
-      });
-    });
 
     // Re-initialize 3D tilts for new cards
     if (window.AppAnimations) {
