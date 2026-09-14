@@ -7,8 +7,8 @@ PORT = 3000
 
 class CleanUrlHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        # Extract path without query parameters or hash
-        clean_path = self.path.split('?')[0].split('#')[0]
+        import urllib.parse
+        clean_path = urllib.parse.unquote(self.path.split('?')[0].split('#')[0])
         
         # Check if the clean path exists on disk
         target_path = self.translate_path(clean_path)

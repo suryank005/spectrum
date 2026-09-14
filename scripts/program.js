@@ -267,15 +267,6 @@ class ProgramController {
 
       this.eventsGrid.innerHTML = filtered.map(ev => `
         <div class="cyber-box special-event-card reveal-fade-up is-revealed" data-event-id="${ev.id}" style="grid-column: 1 / -1; width: 100%;">
-          ${ev.isComingSoon !== false ? `
-            <div class="coming-soon-overlay" data-event-id="${ev.id}">
-              <div class="coming-soon-badge">COMING SOON....!!</div>
-              <div class="coming-soon-subtext">
-                <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                <span>Click to View Event Brief &amp; Details</span>
-              </div>
-            </div>
-          ` : ''}
           ${ev.cardImage ? `
             <div style="position: relative; width: 100%; height: 240px; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255, 189, 46, 0.4); background: #000;">
               <div style="position: absolute; inset: 0; background-image: url('${ev.cardImage}'); background-size: cover; background-position: center; filter: blur(16px) brightness(0.45); opacity: 0.85; transform: scale(1.15);"></div>
@@ -308,23 +299,26 @@ class ProgramController {
                 <span style="font-family: var(--font-mono); font-size: 0.95rem; color: #fff;">${ev.teamSize}</span>
               </div>
 
-              <button class="btn btn-cyber-primary open-details-btn" data-event-id="${ev.id}" style="background: linear-gradient(135deg, #ffbd2e, #f59e0b); color: #000; border-color: #ffbd2e; font-weight: 700; width: 100%; justify-content: center;">
-                <span>View Details &amp; Register</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </button>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+                <a href="${ev.registrationUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary direct-register-btn" style="background: linear-gradient(135deg, #ffbd2e, #f59e0b); color: #000; border-color: #ffbd2e; font-weight: 700; width: 100%; justify-content: center; text-decoration: none;">
+                  <span>Register Now</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                <button class="btn btn-cyber-outline open-details-btn" data-event-id="${ev.id}" style="width: 100%; justify-content: center;">
+                  <span>View Details</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       `).join('');
 
-      this.eventsGrid.querySelectorAll('.open-details-btn, .coming-soon-overlay, .special-event-card').forEach(btn => {
+      this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
+          e.preventDefault();
           const card = btn.closest('[data-event-id]');
           const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
-          if (id) {
-            e.preventDefault();
-            this.openModal(id);
-          }
+          if (id) this.openModal(id);
         });
       });
       return;
@@ -366,15 +360,6 @@ class ProgramController {
 
     this.eventsGrid.innerHTML = filtered.map(ev => `
       <div class="event-card reveal-fade-up is-revealed" data-event-id="${ev.id}">
-        ${ev.isComingSoon !== false ? `
-          <div class="coming-soon-overlay" data-event-id="${ev.id}">
-            <div class="coming-soon-badge">COMING SOON....!!</div>
-            <div class="coming-soon-subtext">
-              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-              <span>Click to View Event Brief &amp; Details</span>
-            </div>
-          </div>
-        ` : ''}
         ${ev.cardImage ? `
           <div class="event-card-banner">
             <div class="banner-bg-blur" style="background-image: url('${ev.cardImage}');"></div>
@@ -403,24 +388,25 @@ class ProgramController {
           </div>
         </div>
 
-        <div class="event-card-footer" style="justify-content: flex-end;">
-          <button class="btn btn-cyber-primary btn-sm open-details-btn" data-event-id="${ev.id}">
-            <span>Details / Register</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <div class="event-card-footer" style="display: flex; gap: 0.5rem; justify-content: space-between;">
+          <button class="btn btn-cyber-outline btn-sm open-details-btn" data-event-id="${ev.id}" style="flex: 1; justify-content: center;">
+            <span>Details</span>
           </button>
+          <a href="${ev.registrationUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary btn-sm direct-register-btn" style="flex: 1; justify-content: center; text-decoration: none;">
+            <span>Register</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
         </div>
       </div>
     `).join('');
 
-    // Re-bind click handlers
-    this.eventsGrid.querySelectorAll('.event-card, .open-details-btn, .coming-soon-overlay').forEach(btn => {
+    // Re-bind click handlers for details button
+    this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
         const card = btn.closest('[data-event-id]');
         const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
-        if (id) {
-          e.preventDefault();
-          this.openModal(id);
-        }
+        if (id) this.openModal(id);
       });
     });
 

@@ -188,9 +188,6 @@
               <div class="filter-pills" id="filter-pills-container">
                 <!-- Rendered dynamically by program.js based on selected category -->
               </div>
-              <div class="pills-coming-soon-overlay" id="pills-coming-soon-overlay">
-                <div class="coming-soon-badge" style="font-size: 0.78rem; padding: 0.35rem 0.95rem; letter-spacing: 0.1em;">EVENT TRACKS LOCKED — COMING SOON</div>
-              </div>
             </div>
           </div>
 
@@ -214,14 +211,6 @@
           </div>
 
           <div class="cyber-box special-event-card" data-event-id="reel-making">
-            <div class="coming-soon-overlay">
-              <div class="coming-soon-badge">COMING SOON....!!</div>
-              <div class="coming-soon-subtext">
-                <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                <span>Click to View Event Brief &amp; Details</span>
-              </div>
-            </div>
-
             <div style="position: relative; width: 100%; height: 240px; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255, 189, 46, 0.4); background: #000;">
               <div style="position: absolute; inset: 0; background-image: url('events/reel1.jpg'); background-size: cover; background-position: center; filter: blur(16px) brightness(0.45); opacity: 0.85; transform: scale(1.15);"></div>
               <img src="events/reel1.jpg" alt="REEL MAKING" style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain; display: block; margin: 0 auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));">
@@ -254,10 +243,15 @@
                   <span style="font-family: var(--font-mono); font-size: 0.95rem; color: #fff;">Individual / Duo</span>
                 </div>
 
-                <button class="btn btn-cyber-primary open-details-btn" data-event-id="reel-making" style="background: linear-gradient(135deg, #ffbd2e, #f59e0b); color: #000; border-color: #ffbd2e; font-weight: 700; width: 100%; justify-content: center;">
-                  <span>View Details &amp; Register</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDGx-SVujeNuYIhyy1KZLNRsZhg34j3Z0QNbwz2IgghRCXsQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary direct-register-btn" style="background: linear-gradient(135deg, #ffbd2e, #f59e0b); color: #000; border-color: #ffbd2e; font-weight: 700; width: 100%; justify-content: center; text-decoration: none;">
+                    <span>Register Now</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </a>
+                  <button class="btn btn-cyber-outline open-details-btn" data-event-id="reel-making" style="width: 100%; justify-content: center;">
+                    <span>View Details</span>
+                  </button>
+                </div>
               </div>
 
             </div>
