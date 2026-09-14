@@ -304,23 +304,15 @@ class ProgramController {
                   <span>Register Now</span>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
-                <button class="btn btn-cyber-outline open-details-btn" data-event-id="${ev.id}" style="width: 100%; justify-content: center;">
+                <a href="BROCHURE TECH &amp; NON TECH EVENTS.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline open-details-btn" style="width: 100%; justify-content: center; text-decoration: none;">
                   <span>View Details</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
       `).join('');
 
-      this.eventsGrid.querySelectorAll('.open-details-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const card = btn.closest('[data-event-id]');
-          const id = card ? card.getAttribute('data-event-id') : btn.getAttribute('data-event-id');
-          if (id) this.openModal(id);
-        });
-      });
       return;
     }
 
@@ -379,7 +371,7 @@ class ProgramController {
 
         <div class="event-meta-grid">
           <div class="meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 1-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             <span><strong>Team:</strong> ${ev.teamSize}</span>
           </div>
           <div class="meta-item">
@@ -389,9 +381,9 @@ class ProgramController {
         </div>
 
         <div class="event-card-footer" style="display: flex; gap: 0.5rem; justify-content: space-between;">
-          <button class="btn btn-cyber-outline btn-sm open-details-btn" data-event-id="${ev.id}" style="flex: 1; justify-content: center;">
+          <a href="BROCHURE TECH &amp; NON TECH EVENTS.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline btn-sm open-details-btn" style="flex: 1; justify-content: center; text-decoration: none;">
             <span>Details</span>
-          </button>
+          </a>
           <a href="${ev.registrationUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary btn-sm direct-register-btn" style="flex: 1; justify-content: center; text-decoration: none;">
             <span>Register</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
