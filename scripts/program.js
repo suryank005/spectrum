@@ -90,12 +90,18 @@ class ProgramController {
       this.tabSpecial.addEventListener('click', () => this.switchCategory('special'));
     }
 
-    // Open PDF brochure on details click if fallback triggered
+    // Open details modal for mini-militia, or PDF brochure on details click if fallback triggered
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.open-details-btn');
-      if (btn && (!btn.getAttribute('href') || btn.getAttribute('href') === '#')) {
-        e.preventDefault();
-        window.open('brochure-events.pdf', '_blank');
+      if (btn) {
+        const eventId = btn.getAttribute('data-event-id');
+        if (eventId === 'mini-militia') {
+          e.preventDefault();
+          this.openModal('mini-militia');
+        } else if (!btn.getAttribute('href') || btn.getAttribute('href') === '#' || btn.getAttribute('href') === 'javascript:void(0)') {
+          e.preventDefault();
+          window.open('brochure-events.pdf', '_blank');
+        }
       }
     });
 
@@ -369,19 +375,8 @@ class ProgramController {
         <p class="event-tagline">${ev.tagline}</p>
         <p class="event-description">${ev.shortDesc}</p>
 
-        <div class="event-meta-grid">
-          <div class="meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 1-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            <span><strong>Team:</strong> ${ev.teamSize}</span>
-          </div>
-          <div class="meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <span><strong>Time:</strong> ${ev.timing.split(',')[0]}</span>
-          </div>
-        </div>
-
         <div class="event-card-footer" style="display: flex; gap: 0.5rem; justify-content: space-between;">
-          <a href="brochure-events.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-outline btn-sm open-details-btn" style="flex: 1; justify-content: center; text-decoration: none;">
+          <a href="${ev.id === 'mini-militia' ? 'javascript:void(0)' : 'brochure-events.pdf'}" ${ev.id === 'mini-militia' ? '' : 'target="_blank" rel="noopener noreferrer"'} class="btn btn-cyber-outline btn-sm open-details-btn" data-event-id="${ev.id}" style="flex: 1; justify-content: center; text-decoration: none;">
             <span>Details</span>
           </a>
           <a href="${ev.registrationUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-cyber-primary btn-sm direct-register-btn" style="flex: 1; justify-content: center; text-decoration: none;">
@@ -419,7 +414,17 @@ class ProgramController {
     }
 
     if (container) {
-      if (event.modalImage) {
+      if (event.id === 'mini-militia') {
+        container.style.cssText = 'display: flex; flex-direction: column; gap: 1rem; width: 100%; margin-bottom: 1.25rem; flex-shrink: 0;';
+        container.innerHTML = `
+          <div style="position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-cyan); box-shadow: 0 4px 25px rgba(0,0,0,0.7); background: #000;">
+            <img src="events/minimilitia1.jpg" alt="Mini Militia Poster" style="width: 100%; height: auto; display: block; object-fit: contain;">
+          </div>
+          <div style="position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-cyan); box-shadow: 0 4px 25px rgba(0,0,0,0.7); background: #000;">
+            <img src="events/minimilitia2.jpg" alt="Mini Militia Rule Book" style="width: 100%; height: auto; display: block; object-fit: contain;">
+          </div>
+        `;
+      } else if (event.modalImage) {
         container.style.cssText = 'display: block; position: relative; width: 100%; height: 280px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-cyan); box-shadow: 0 4px 25px rgba(0,0,0,0.7); margin-bottom: 0.5rem; flex-shrink: 0; background: #000;';
         container.innerHTML = `
           <div style="position: absolute; inset: 0; background-image: url('${event.modalImage}'); background-size: cover; background-position: center; filter: blur(20px) brightness(0.45); opacity: 0.85; transform: scale(1.15);"></div>
